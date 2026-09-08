@@ -1,0 +1,4 @@
+.env
+.leetcode-sync-state.json
+.sync-logs/
+__pycache__/
