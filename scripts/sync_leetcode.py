@@ -52,25 +52,28 @@ def request_json(url: str, *, method: str = "GET", payload: dict | None = None) 
         if csrf:
             headers["x-csrftoken"] = csrf
     request = urllib.request.Request(url, data=data, headers=headers, method=method)
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            return json.load(response)
-    except urllib.error.HTTPError as error:
-        raise RuntimeError(f"LeetCode returned HTTP {error.code}. Your session cookie may have expired.") from error
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as error:
+            raise RuntimeError(f"LeetCode returned HTTP {error.code}. Your session cookie may have expired.") from error
+        except urllib.error.URLError as error:
+            if attempt == 2:
+                raise RuntimeError("Could not reach LeetCode after three attempts. Check your internet connection and try again.") from error
+            time.sleep(2 ** attempt)
+    raise AssertionError("unreachable")
 
 
-def question_metadata(slug: str) -> dict:
-    query = """query questionData($titleSlug: String!) {
-      question(titleSlug: $titleSlug) { questionFrontendId title difficulty }
-    }"""
+def graphql(query: str, variables: dict, operation_name: str) -> dict:
     response = request_json(
         "https://leetcode.com/graphql/", method="POST",
-        payload={"query": query, "variables": {"titleSlug": slug}, "operationName": "questionData"},
+        payload={"query": query, "variables": variables, "operationName": operation_name},
     )
-    question = response.get("data", {}).get("question")
-    if not question:
-        raise RuntimeError(f"Could not find LeetCode question metadata for {slug}.")
-    return question
+    if response.get("errors"):
+        message = response["errors"][0].get("message", "unknown GraphQL error")
+        raise RuntimeError(f"LeetCode GraphQL request failed: {message}")
+    return response.get("data", {})
 
 
 def strip_java_comments(source: str) -> str:
@@ -128,19 +131,31 @@ def load_state() -> dict:
 
 
 def write_solution(submission: dict) -> str:
-    submission_id = submission["id"]
-    slug = submission["title_slug"]
-    details = request_json(f"https://leetcode.com/submissions/detail/{submission_id}/")
+    submission_id = int(submission["id"])
+    data = graphql(
+        """query submissionDetails($submissionId: Int!) {
+          submissionDetails(submissionId: $submissionId) {
+            code
+            lang { name }
+            question { questionFrontendId title titleSlug difficulty }
+          }
+        }""",
+        {"submissionId": submission_id}, "submissionDetails",
+    )
+    details = data.get("submissionDetails") or {}
     source = details.get("code")
     if not source:
         raise RuntimeError(f"LeetCode did not return source code for submission {submission_id}.")
-    language = details.get("lang", submission.get("lang", "")).lower()
+    language = (details.get("lang") or {}).get("name", "").lower()
     extension = LANGUAGE_EXTENSIONS.get(language)
     if not extension:
         raise RuntimeError(f"Unsupported LeetCode language: {language or 'unknown'}.")
     if language == "java":
         source = strip_java_comments(source)
-    question = question_metadata(slug)
+    question = details.get("question") or {}
+    if not question.get("questionFrontendId"):
+        raise RuntimeError(f"LeetCode did not return problem metadata for submission {submission_id}.")
+    slug = question["titleSlug"]
     frontend_id = question["questionFrontendId"]
     directory = REPOSITORY / "problems" / f"{frontend_id}-{slug}"
     directory.mkdir(parents=True, exist_ok=True)
@@ -162,8 +177,15 @@ def main() -> int:
     if not username or not os.environ.get("LEETCODE_SESSION"):
         print("Missing LEETCODE_USERNAME or LEETCODE_SESSION. Copy .env.example to .env and fill it in.", file=sys.stderr)
         return 2
-    response = request_json(f"https://leetcode.com/api/submissions/{username}/?offset=0&limit=20&lastkey=")
-    accepted = [item for item in response.get("submissions_dump", []) if item.get("status_display") == "Accepted"]
+    data = graphql(
+        """query recentAcSubmissions($username: String!, $limit: Int!) {
+          recentAcSubmissionList(username: $username, limit: $limit) {
+            id title titleSlug timestamp statusDisplay lang
+          }
+        }""",
+        {"username": username, "limit": 20}, "recentAcSubmissions",
+    )
+    accepted = data.get("recentAcSubmissionList", [])
     state = load_state()
     already_processed = set(state.get("processed_submission_ids", []))
     pending = [item for item in accepted if item["id"] not in already_processed]
