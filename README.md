@@ -19,3 +19,11 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 - Logs are kept in `.sync-logs/sync.log` and `.sync-logs/error.log` (also local only).
 - LeetCode session cookies eventually expire. If the error log says LeetCode returned HTTP 401 or 403, refresh the values in `.env` from a new logged-in LeetCode session, then run the sync script again.
 - To stop the scheduler, run `launchctl bootout "gui/$(id -u)/com.beheraajit.leetcode-github-sync"`.
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Math
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3871-count-commas-in-range-ii](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3871-count-commas-in-range-ii/) | Medium |
+<!---LeetCode Topics End-->
