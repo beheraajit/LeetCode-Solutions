@@ -11,6 +11,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import fcntl
 from pathlib import Path
 
 
@@ -124,6 +125,17 @@ def has_staged_changes() -> bool:
     ).returncode != 0
 
 
+def push_changes() -> None:
+    for attempt in range(3):
+        result = subprocess.run(["git", "push", "origin", "main"], cwd=REPOSITORY, check=False)
+        if result.returncode == 0:
+            return
+        if attempt == 2:
+            result.check_returncode()
+        run_git("pull", "--rebase", "origin", "main")
+    raise AssertionError("unreachable")
+
+
 def load_state() -> dict:
     if not STATE_FILE.exists():
         return {"processed_submission_ids": []}
@@ -171,12 +183,13 @@ def write_solution(submission: dict) -> str:
     return f"{frontend_id}. {question['title']}"
 
 
-def main() -> int:
+def sync() -> int:
     load_env(ENV_FILE)
     username = os.environ.get("LEETCODE_USERNAME")
     if not username or not os.environ.get("LEETCODE_SESSION"):
         print("Missing LEETCODE_USERNAME or LEETCODE_SESSION. Copy .env.example to .env and fill it in.", file=sys.stderr)
         return 2
+    run_git("pull", "--rebase", "origin", "main")
     data = graphql(
         """query recentAcSubmissions($username: String!, $limit: Int!) {
           recentAcSubmissionList(username: $username, limit: $limit) {
@@ -197,13 +210,24 @@ def main() -> int:
         run_git("add", "problems")
         if has_staged_changes():
             run_git("commit", "-m", f"Add LeetCode solution: {label}")
-            run_git("push", "origin", "main")
+            push_changes()
         already_processed.add(submission["id"])
         state["processed_submission_ids"] = sorted(already_processed, key=int)[-500:]
         STATE_FILE.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
         print(f"Pushed {label}.")
         time.sleep(1)
     return 0
+
+
+def main() -> int:
+    lock_path = REPOSITORY / ".sync.lock"
+    with lock_path.open("w", encoding="utf-8") as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print("A sync is already running; skipping this scheduled check.")
+            return 0
+        return sync()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 .env
 .leetcode-sync-state.json
+.sync.lock
 .sync-logs/
 __pycache__/
