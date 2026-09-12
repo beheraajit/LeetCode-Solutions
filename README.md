@@ -41,6 +41,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
 | [3483-unique-3-digit-even-numbers](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
@@ -54,4 +55,16 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [3483-unique-3-digit-even-numbers](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
+## Binary Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
+## Dynamic Programming
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
+## Sorting
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
 <!---LeetCode Topics End-->
