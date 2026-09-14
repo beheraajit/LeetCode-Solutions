@@ -25,6 +25,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 ## Math
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0836-rectangle-overlap](https://github.com/beheraajit/LeetCode-Solutions/tree/main/0836-rectangle-overlap/) | Easy |
 | [3871-count-commas-in-range-ii](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3871-count-commas-in-range-ii/) | Medium |
 ## Tree
 | Problem Name | Difficulty |
@@ -72,4 +73,8 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0835-image-overlap](https://github.com/beheraajit/LeetCode-Solutions/tree/main/0835-image-overlap/) | Medium |
+## Geometry
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0836-rectangle-overlap](https://github.com/beheraajit/LeetCode-Solutions/tree/main/0836-rectangle-overlap/) | Easy |
 <!---LeetCode Topics End-->
