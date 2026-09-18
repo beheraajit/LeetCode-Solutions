@@ -51,6 +51,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1477-find-two-non-overlapping-sub-arrays-each-with-target-sum](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1477-find-two-non-overlapping-sub-arrays-each-with-target-sum/) | Medium |
+| [1520-maximum-number-of-non-overlapping-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1520-maximum-number-of-non-overlapping-substrings/) | Hard |
 | [3483-unique-3-digit-even-numbers](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 ## Recursion
 | Problem Name | Difficulty |
@@ -75,6 +76,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 ## Sorting
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [1520-maximum-number-of-non-overlapping-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1520-maximum-number-of-non-overlapping-substrings/) | Hard |
 | [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
 ## Matrix
 | Problem Name | Difficulty |
@@ -91,10 +93,12 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [1520-maximum-number-of-non-overlapping-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1520-maximum-number-of-non-overlapping-substrings/) | Hard |
 | [2472-maximum-number-of-non-overlapping-palindrome-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/2472-maximum-number-of-non-overlapping-palindrome-substrings/) | Hard |
 ## Greedy
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [1520-maximum-number-of-non-overlapping-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1520-maximum-number-of-non-overlapping-substrings/) | Hard |
 | [2472-maximum-number-of-non-overlapping-palindrome-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/2472-maximum-number-of-non-overlapping-palindrome-substrings/) | Hard |
 ## Combinatorics
 | Problem Name | Difficulty |
