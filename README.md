@@ -27,6 +27,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | ------- | ------- |
 | [0836-rectangle-overlap](https://github.com/beheraajit/LeetCode-Solutions/tree/main/0836-rectangle-overlap/) | Easy |
 | [1621-number-of-sets-of-k-non-overlapping-line-segments](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1621-number-of-sets-of-k-non-overlapping-line-segments/) | Medium |
+| [3524-find-x-value-of-array-i](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3524-find-x-value-of-array-i/) | Medium |
 | [3871-count-commas-in-range-ii](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3871-count-commas-in-range-ii/) | Medium |
 ## Tree
 | Problem Name | Difficulty |
@@ -47,6 +48,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | [1477-find-two-non-overlapping-sub-arrays-each-with-target-sum](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1477-find-two-non-overlapping-sub-arrays-each-with-target-sum/) | Medium |
 | [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
 | [3483-unique-3-digit-even-numbers](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
+| [3524-find-x-value-of-array-i](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3524-find-x-value-of-array-i/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -73,6 +75,7 @@ Each problem is written to `problems/<LeetCode-number>-<problem-slug>/` with a `
 | [1621-number-of-sets-of-k-non-overlapping-line-segments](https://github.com/beheraajit/LeetCode-Solutions/tree/main/1621-number-of-sets-of-k-non-overlapping-line-segments/) | Medium |
 | [2472-maximum-number-of-non-overlapping-palindrome-substrings](https://github.com/beheraajit/LeetCode-Solutions/tree/main/2472-maximum-number-of-non-overlapping-palindrome-substrings/) | Hard |
 | [3414-maximum-score-of-non-overlapping-intervals](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3414-maximum-score-of-non-overlapping-intervals/) | Hard |
+| [3524-find-x-value-of-array-i](https://github.com/beheraajit/LeetCode-Solutions/tree/main/3524-find-x-value-of-array-i/) | Medium |
 ## Sorting
 | Problem Name | Difficulty |
 | ------- | ------- |
