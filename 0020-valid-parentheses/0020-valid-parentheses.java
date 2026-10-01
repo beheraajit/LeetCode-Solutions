@@ -10,9 +10,6 @@ class Solution {
                 w.push(ch);
             }
             else {
-
-
-
             if(w.isEmpty()) {
                 return false;
             }
